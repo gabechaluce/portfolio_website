@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Cal+Sans&family=Finger+Paint&family=Monsieur+La+Doulaise&family=Quicksand:wght@300..700&family=Rubik+Spray+Paint&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Option 1: Define custom utility class */
+@layer utilities {
+    .font-Monsieur {
+        font-family: "Monsieur La Doulaise", cursive;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 50px; /* Mobile size */
+    }
+    
+    /* Responsive font size for larger screens */
+    @media (min-width: 640px) {
+        .font-Monsieur {
+            font-size: 100px; /* Desktop size */
+        }
+    }
+    .cal-sans-regular {
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+    font-size: 45px; /* Mobile size */
+    }
+    
+    /* Responsive font size for larger screens */
+    @media (min-width: 640px) {
+        .cal-sans-regular{
+            font-size: 100px; /* Desktop size */
+        }
+     
+        .boogaloo-regular {
+  font-family: "Boogaloo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+}
+}
+
+html {
+    scroll-behavior: smooth;
+}
