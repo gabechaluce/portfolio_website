@@ -176,7 +176,7 @@ const Hero = () => {
                         
                         <div className='flex justify-center'>
                             <a 
-                                href="../assets/Errol Gabriel Echaluce.pdf" 
+                                href="..../assets/Errol Gabriel Echaluce.pdf" 
                                 download='Errol Gabriel Echaluce CV.pdf' 
                                 className={`inline-flex items-center justify-center border-2 py-3 px-8
                                 focus:outline-none text-lg font-semibold
