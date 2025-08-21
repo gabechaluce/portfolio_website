@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useTheme } from './ThemeContext'
 import me from '../assets/me.jpg'
+import star from '../assets/star.png'
 
 const Hero = () => {
     const { isDarkMode } = useTheme();
@@ -11,6 +12,12 @@ const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
     const [typingPaused, setTypingPaused] = useState(false);
     
+    // Refs for scroll animations
+    const imageRef = useRef(null);
+    const textRef = useRef(null);
+    const [imageInView, setImageInView] = useState(false);
+    const [textInView, setTextInView] = useState(false);
+    
     const words = ['Web Developer', 'Frontend Enthusiast', 'Mobile App Developer'];
     
     useEffect(() => {
@@ -20,6 +27,41 @@ const Hero = () => {
         }, 3000);
         
         return () => clearTimeout(timer);
+    }, []);
+    
+    // Intersection Observer for scroll animations
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        if (entry.target === imageRef.current) {
+                            setImageInView(true);
+                        } else if (entry.target === textRef.current) {
+                            setTextInView(true);
+                        }
+                    }
+                });
+            },
+            { threshold: 0.3, rootMargin: '0px 0px -100px 0px' }
+        );
+        
+        if (imageRef.current) {
+            observer.observe(imageRef.current);
+        }
+        
+        if (textRef.current) {
+            observer.observe(textRef.current);
+        }
+        
+        return () => {
+            if (imageRef.current) {
+                observer.unobserve(imageRef.current);
+            }
+            if (textRef.current) {
+                observer.unobserve(textRef.current);
+            }
+        };
     }, []);
     
     // Typewriter effect - FIXED
@@ -110,169 +152,228 @@ const Hero = () => {
     };
     
     return (
-              
-            <section id='About' className='body-font z-10'>
-                <div className='max-w-7xl mx-auto flex px-4 lg:px-2 py-32 mt-16 flex-col items-center'>
-                    <div className={`relative flex flex-col items-center text-center mb-20 transition-all duration-1000 ease-out transform ${
-                        textVisible 
-                            ? 'opacity-100 translate-y-0' 
-                            : 'opacity-0 translate-y-8'
-                    }`}>
-                        <style jsx>{`
-                            @keyframes bounceHover {
-                                0% { transform: scale(1) translateY(0) rotate(0deg); }
-                                20% { transform: scale(1.05) translateY(-4px) rotate(-1deg); }
-                                40% { transform: scale(1.02) translateY(-2px) rotate(0.5deg); }
-                                60% { transform: scale(1.03) translateY(-3px) rotate(-0.5deg); }
-                                80% { transform: scale(1.01) translateY(-1px) rotate(0deg); }
-                                100% { transform: scale(1) translateY(0) rotate(0deg); }
-                            }
-                            
-                            .bounce-letter:hover {
-                                animation: bounceHover 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                            }
-                            
-                            .typewriter-cursor {
-                                animation: blink 1.06s infinite;
-                            }
-                            
-                            @keyframes blink {
-                                0%, 50% { opacity: 1; }
-                                51%, 100% { opacity: 0; }
-                            }
-                        `}</style>
-                        
-                        {/* Removed border around title section */}
-                        <div className="mb-8">
-                            <h1 className={`title-font sm:text-6xl text-4xl mb-4 font-bold leading-tight ${
-                                isDarkMode ? 'text-white' : 'text-black'
-                            }`}>
-                                <span className="boogaloo-regular select-none sm:text-6xl text-5xl">Hello there, I am</span>
-                                <br />
-                                <span className=" cal-sans-regular inline-block">
-                                    {renderAnimatedText('Gabriel Echaluce.', true)}
-                                </span>
-                            </h1>
-                        </div>
-                        
-                        <div className="relative h-16 sm:h-20 flex items-center justify-center mb-8">
-                            <h2 className={`sm:text-3xl text-2xl mb-4 font-bold ${
-                                isDarkMode 
-                                    ? 'text-yellow-300' 
-                                    : 'text-blue-950'
-                            }`}>
-                                <span className="inline-block min-w-0">
-                                    {typewriterText}
-                                    <span 
-                                        className={`typewriter-cursor ml-1 ${
-                                            showCursor ? 'opacity-100' : 'opacity-0'
-                                        } transition-opacity duration-100`}
-                                    >
-                                        |
-                                    </span>
-                                </span>
-                            </h2>
-                        </div>
-                        
-                        <div className='flex justify-center'>
-                            <a 
-                                href="..../assets/Errol Gabriel Echaluce.pdf" 
-                                download='Errol Gabriel Echaluce CV.pdf' 
-                                className={`inline-flex items-center justify-center border-2 py-3 px-8
-                                focus:outline-none text-lg font-semibold
-                                transition-all duration-300 ease-in-out
-                                relative overflow-hidden group hover:scale-105 ${
-                                    isDarkMode
-                                        ? 'text-white border-pink-500 hover:bg-pink-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]'
-                                        : 'text-black border-purple-500 hover:bg-purple-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
-                                }`}
-                                style={{ borderRadius: '0' }}
-                            >
-                                <span className="relative z-10">Download CV</span>
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                                    isDarkMode
-                                        ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
-                                        : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
-                                }`}></div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {/* ABOUT ME SECTION - CENTERED */}
-                <div className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
-                    textVisible ? 'opacity-100' : 'opacity-0'
+        <section id='About' className='body-font z-10'>
+            <div className='max-w-7xl mx-auto flex px-4 lg:px-2 py-24 mt-8 flex-col items-center'>
+                <div className={`relative flex flex-col items-center text-center mb-16 transition-all duration-1000 ease-out transform ${
+                    textVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-8'
                 }`}>
-                    {/* Removed border around about section - adjusted spacing */}
-                    <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-6xl">
-                        {/* Profile Image centered with enhanced quality - adjusted for mobile */}
-                        <div className="relative group -mt-24 sm:-mt-8 md:mt-0">
-                            <div className={`w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-2xl transition-all duration-300 ease-in-out group-hover:scale-105 border-4 ${
-                                isDarkMode 
-                                    ? 'border-pink-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]' 
-                                    : 'border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
+                    <style jsx>{`
+                        @keyframes bounceHover {
+                            0% { transform: scale(1) translateY(0) rotate(0deg); }
+                            20% { transform: scale(1.05) translateY(-4px) rotate(-1deg); }
+                            40% { transform: scale(1.02) translateY(-2px) rotate(0.5deg); }
+                            60% { transform: scale(1.03) translateY(-3px) rotate(-0.5deg); }
+                            80% { transform: scale(1.01) translateY(-1px) rotate(0deg); }
+                            100% { transform: scale(1) translateY(0) rotate(0deg); }
+                        }
+                        
+                        .bounce-letter:hover {
+                            animation: bounceHover 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                        }
+                        
+                        .typewriter-cursor {
+                            animation: blink 1.06s infinite;
+                        }
+                        
+                        @keyframes blink {
+                            0%, 50% { opacity: 1; }
+                            51%, 100% { opacity: 0; }
+                        }
+                        
+                        @keyframes fadeInRight {
+                            from {
+                                opacity: 0;
+                                transform: translateX(-50px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+                        
+                        @keyframes fadeInLeft {
+                            from {
+                                opacity: 0;
+                                transform: translateX(50px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+                        
+                        .fade-in-right {
+                            animation: fadeInRight 1s ease-out forwards;
+                        }
+                        
+                        .fade-in-left {
+                            animation: fadeInLeft 1s ease-out forwards;
+                        }
+                    `}</style>
+                    
+                    {/* Adjusted title section with negative margin to lift it up */}
+                    <div className="mb-6 -mt-12">
+                        <h1 className={`title-font sm:text-6xl text-4xl mb-6 font-bold leading-tight ${
+                            isDarkMode ? 'text-white' : 'text-black'
+                        }`}>
+                            <span className="boogaloo-regular select-none sm:text-6xl text-5xl">Hello there, I am</span>
+                            <br />
+                            <span className=" cal-sans-regular inline-block">
+                                {renderAnimatedText('Gabriel Echaluce.', true)}
+                            </span>
+                        </h1>
+                    </div>
+                    
+                    <div className="relative h-16 sm:h-20 flex items-center justify-center mb-8">
+                        <h2 className={`sm:text-3xl text-2xl mb-4 font-bold ${
+                            isDarkMode 
+                                ? 'text-yellow-300' 
+                                : 'text-blue-950'
+                        }`}>
+                            <span className="inline-block min-w-0">
+                                {typewriterText}
+                                <span 
+                                    className={`typewriter-cursor ml-1 ${
+                                        showCursor ? 'opacity-100' : 'opacity-0'
+                                    } transition-opacity duration-100`}
+                                >
+                                    |
+                                </span>
+                            </span>
+                        </h2>
+                    </div>
+                    
+                    <div className='flex justify-center'>
+                        <a 
+                            href="..../assets/Errol Gabriel Echaluce.pdf" 
+                            download='Errol Gabriel Echaluce CV.pdf' 
+                            className={`inline-flex items-center justify-center border-2 py-3 px-8
+                            focus:outline-none text-lg font-semibold
+                            transition-all duration-300 ease-in-out
+                            relative overflow-hidden group hover:scale-105 ${
+                                isDarkMode
+                                    ? 'text-white border-pink-500 hover:bg-pink-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]'
+                                    : 'text-black border-purple-500 hover:bg-purple-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
                             }`}
-                            style={{
-                                boxShadow: isDarkMode 
-                                    ? '0 25px 50px -12px rgba(236, 72, 153, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
-                                    : '0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
-                                background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1))',
-                            }}
-                            >
-                                <img 
-                                    src={me} 
-                                    alt="Gabriel Echaluce"
-                                    className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110"
-                                    style={{
-                                        filter: 'brightness(1.05) contrast(1.1) saturate(1.15) sharpen(1px)',
-                                        imageRendering: 'crisp-edges',
-                                        backfaceVisibility: 'hidden',
-                                        transform: 'translateZ(0)',
-                                        objectPosition: 'center center',
-                                    }}
-                                />
-                            </div>
-                            {/* Enhanced gradient overlay effect with better blending */}
-                            <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                            style={{ borderRadius: '0' }}
+                        >
+                            <span className="relative z-10">Download CV</span>
+                            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                                 isDarkMode
                                     ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
                                     : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
-                            }`}
-                            style={{
-                                mixBlendMode: 'overlay',
-                            }}
-                            ></div>
-                            
-                            {/* Additional enhancement layer for premium look */}
-                            <div className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
+                            }`}></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {/* ABOUT ME SECTION - CENTERED */}
+            <div className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
+                textVisible ? 'opacity-100' : 'opacity-0'
+            }`}>
+                {/* Removed border around about section - adjusted spacing */}
+                <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-6xl">
+                    {/* Profile Image centered with enhanced quality - adjusted for mobile */}
+                    <div 
+                        ref={imageRef}
+                        className={`relative group -mt-24 sm:-mt-8 md:mt-0 ${imageInView ? 'fade-in-right' : 'opacity-0'}`}
+                    >
+                        <div className={`w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-2xl transition-all duration-300 ease-in-out group-hover:scale-105 border-4 ${
+                            isDarkMode 
+                                ? 'border-pink-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]' 
+                                : 'border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
+                        }`}
+                        style={{
+                            boxShadow: isDarkMode 
+                                ? '0 25px 50px -12px rgba(236, 72, 153, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
+                                : '0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+                            background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1))',
+                        }}
+                        >
+                            <img 
+                                src={me} 
+                                alt="Gabriel Echaluce"
+                                className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110"
                                 style={{
-                                    background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
-                                    mixBlendMode: 'soft-light',
+                                    filter: 'brightness(1.05) contrast(1.1) saturate(1.15) sharpen(1px)',
+                                    imageRendering: 'crisp-edges',
+                                    backfaceVisibility: 'hidden',
+                                    transform: 'translateZ(0)',
+                                    objectPosition: 'center center',
                                 }}
-                            ></div>
+                            />
                         </div>
+                        {/* Enhanced gradient overlay effect with better blending */}
+                        <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                            isDarkMode
+                                ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
+                                : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
+                        }`}
+                        style={{
+                            mixBlendMode: 'overlay',
+                        }}
+                        ></div>
+                        
+                        {/* Additional enhancement layer for premium look */}
+                        <div className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
+                            style={{
+                                background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
+                                mixBlendMode: 'soft-light',
+                            }}
+                        ></div>
+                    </div>
 
-                        {/* Text Content centered - removed border */}
-                        <div className="max-w-2xl space-y-6">
-                            <p className={`text-lg sm:text-xl leading-relaxed ${
-                                isDarkMode ? 'text-gray-300' : 'text-black'
-                            }`}>
-                                <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
-                                    isDarkMode 
-                                        ? 'from-pink-400 to-pink-600' 
-                                        : 'from-purple-600 to-purple-800'
+                    {/* Text Content centered - now inside a card with non-transparent background */}
+                    <div 
+                        ref={textRef}
+                        className={`relative max-w-md md:max-w-lg lg:max-w-xl ${textInView ? 'fade-in-left' : 'opacity-0'}`}
+                    >
+                        {/* Single star decoration in top right corner - visible on all screen sizes */}
+                        <div className="absolute -top-6 -right-5 z-10 md:-top-10 md:-right-11">
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 animate-pulse" style={{ animationDuration: '2s' }}>
+                                <img 
+                                    src={star} 
+                                    alt="star" 
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                        <div className={`rounded-3xl p-6 sm:p-8 md:p-10 transition-all duration-500 border ${
+                            isDarkMode 
+                                ? 'bg-black border-gray-700 text-white' 
+                                : 'bg-white border-gray-200 text-black'
+                        } shadow-2xl hover:shadow-3xl`}
+                        style={{
+                            boxShadow: isDarkMode 
+                                ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)' 
+                                : '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+                        }}>
+                            <div className="space-y-4 md:space-y-6">
+                                <p className={`text-lg md:text-xl leading-relaxed ${
+                                    isDarkMode ? 'text-gray-300' : 'text-gray-800'
                                 }`}>
-                                  Errol Gabriel Echaluce
-                                </span>{/*, dedicated to bridging the gaps and pushing the boundaries of technology through disruptive innovations and redefining human-computer interactions with cutting-edge AI advancements. */}
-                            </p>
-
-
+                                    <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
+                                        isDarkMode 
+                                            ? 'from-pink-400 to-pink-600' 
+                                            : 'from-purple-600 to-purple-800'
+                                    }`}>
+                                      Errol Gabriel Echaluce
+                                    </span> on Earth.
+                                </p>
+                                {/* <p className={`text-base md:text-lg leading-relaxed ${
+                                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                }`}>
+                                    Dedicated to bridging the gaps and pushing the boundaries of technology through disruptive innovations and redefining human-computer interactions with cutting-edge AI advancements.
+                                </p> */}
+                            </div>
                         </div>
                     </div>
-              
                 </div>
-            </section>
-     
+            </div>
+        </section>
     )
 }
 
