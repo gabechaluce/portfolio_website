@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useTheme } from './ThemeContext'
-import me from '../assets/me.jpg'
+import me from '../assets/me.JPG'
 import star from '../assets/star.png'
 import comptia from '../assets/comptia.png'
 import itf from '../assets/itf.png'
