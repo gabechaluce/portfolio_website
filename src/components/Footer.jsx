@@ -18,14 +18,14 @@ const Footer = () => {
               Gabriel Echaluce
             </h2>
             <p className="mt-2 text-sm">
-              Frontend Developer & UI Enthusiast
+              Frontend Developer & UI Designer
             </p>
           </div>
 
           {/* Middle section - Links */}
           <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
             <a 
-              href="#About" 
+              href="#about" 
               className={`hover:text-purple-500 transition-colors ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}
@@ -33,7 +33,7 @@ const Footer = () => {
               About
             </a>
             <a 
-              href="#Projects" 
+              href="#projects" 
               className={`hover:text-purple-500 transition-colors ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}
@@ -41,27 +41,20 @@ const Footer = () => {
               Projects
             </a>
             <a 
-              href="#Contact" 
+              href="#contact" 
               className={`hover:text-purple-500 transition-colors ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}
             >
               Contact
             </a>
-            <a 
-              href="/blog" 
-              className={`hover:text-purple-500 transition-colors ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-700'
-              }`}
-            >
-              Blog
-            </a>
+           
           </div>
 
           {/* Right section - Socials */}
           <div className="flex space-x-4">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/gabechaluce" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`p-2 rounded-full hover:bg-opacity-20 transition-all ${
@@ -91,7 +84,9 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="mailto:your.email@example.com" 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=gabechaluce.dev@gmail.com" 
+              target="_blank"
+              rel="noopener noreferrer"
               className={`p-2 rounded-full hover:bg-opacity-20 transition-all ${
                 isDarkMode 
                   ? 'hover:bg-purple-500 text-gray-300' 

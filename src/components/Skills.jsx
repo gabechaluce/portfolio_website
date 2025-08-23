@@ -14,22 +14,39 @@ import mysql from '../assets/mysql.png';
 import sqlserver from '../assets/sqlserver.png';
 import figma from '../assets/figma.png';
 import androidstudio from '../assets/androidstudio.png';
+import kotlin from '../assets/kotlin.png';
+import tensorflow from '../assets/tensorflow.png';
+import firebase from '../assets/firebase.png';
+import maria from '../assets/maria.png';
+import git from '../assets/git.png';
+import myadmin from '../assets/myadmin.png';
 
+// Reorganized skills array - Frontend first, then Backend
 const skills = [
-    { img: react, name: 'React', desc: 'Frontend Library', category: 'frontend' },
-    { img: node, name: 'Node', desc: 'Runtime Environment', category: 'backend' },
+    // Frontend Skills
+    
     { img: javascript, name: 'Javascript', desc: 'Programming Language', category: 'frontend' },
-    { img: tailwindcss, name: 'Tailwind CSS', desc: 'CSS Framework', category: 'frontend' },
-    { img: css, name: 'CSS', desc: 'Styling Language', category: 'frontend' },
+    { img: react, name: 'React', desc: 'Frontend Library', category: 'frontend' },
     { img: html, name: 'HTML', desc: 'Markup Language', category: 'frontend' },
+    { img: css, name: 'CSS', desc: 'Styling Language', category: 'frontend' },
+    { img: tailwindcss, name: 'Tailwind CSS', desc: 'CSS Framework', category: 'frontend' },
+    { img: figma, name: 'Figma', desc: 'Design Tool', category: 'frontend' },
+    { img: androidstudio, name: 'Android Studio', desc: 'Mobile Development', category: 'frontend' },
+    { img: kotlin, name: 'Kotlin', desc: 'Mobile Development', category: 'frontend' },
+    
+    // Backend Skills
+    { img: node, name: 'Node', desc: 'Runtime Environment', category: 'backend' },
     { img: java, name: 'Java', desc: 'Programming Language', category: 'backend' },
     { img: cplusplus, name: 'C++', desc: 'Programming Language', category: 'backend' },
     { img: php, name: 'PHP', desc: 'Server-side Language', category: 'backend' },
     { img: vb, name: 'VB', desc: 'Programming Language', category: 'backend' },
     { img: mysql, name: 'MySQL', desc: 'Database System', category: 'backend' },
     { img: sqlserver, name: 'SQL Server', desc: 'Database System', category: 'backend' },
-    { img: figma, name: 'Figma', desc: 'Design Tool', category: 'frontend' },
-    { img: androidstudio, name: 'Android Studio', desc: 'Mobile Development', category: 'frontend' },
+    { img: maria, name: 'MariaDB', desc: 'Database System', category: 'backend' },
+    { img: tensorflow, name: 'TensorFlow', desc: 'Machine Learning', category: 'backend' },
+    { img: firebase, name: 'Firebase', desc: 'Backend Service', category: 'backend' },
+    { img: git, name: 'Git', desc: 'Version Control', category: 'backend' },
+    { img: myadmin, name: 'phpMyAdmin', desc: 'Database Management', category: 'backend' }
 ];
 
 const Skills = () => {
@@ -122,13 +139,13 @@ const Skills = () => {
                 <div className={`text-center mb-16 group transition-all duration-500 ease-out ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}>
-                    <h2 className={`text-4xl font-bold inline-block relative pb-2 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                        {renderAnimatedText('Skills', true)}
+                    <h2 className={`cal-sans-bold text-4xl font-bold inline-block relative pb-2 ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                        {renderAnimatedText('Tech Skills', true)}
                         <span className="absolute bottom-0 left-0 h-1 rounded-full w-0 group-hover:w-full transition-all duration-700 ease-[cubic-bezier(0.65,0.05,0.36,1)] bg-[#8D5DF4]"></span>
                     </h2>
                 </div>
                 
-                {/* Filter buttons with glass effect */}
+                {/* Filter buttons with enhanced glass effect */}
                 <div className={`flex justify-center mb-12 gap-4 sticky top-20 z-10 py-2 transition-all duration-500 delay-100 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}>
@@ -139,24 +156,28 @@ const Skills = () => {
                             className={`relative px-6 py-3 rounded-xl overflow-hidden group transition-all duration-300 ease-in-out
                                 ${filter === btn 
                                     ? (isDarkMode 
-                                        ? 'bg-white/10 border border-white/30 text-purple-300 shadow-lg shadow-purple-500/20' 
-                                        : 'bg-black/10 border border-black/20 text-purple-600 shadow-lg shadow-purple-500/10'
+                                        ? 'bg-white/15 border border-white/40 text-purple-200 shadow-lg shadow-purple-500/30' 
+                                        : 'bg-black/15 border border-black/25 text-purple-700 shadow-lg shadow-purple-500/20'
                                     )
                                     : (isDarkMode 
-                                        ? 'bg-white/5 border border-white/20 text-white/80 hover:bg-white/10' 
-                                        : 'bg-black/5 border border-black/10 text-gray-700 hover:bg-black/10'
+                                        ? 'bg-white/8 border border-white/25 text-white/90 hover:bg-white/15 hover:border-white/35' 
+                                        : 'bg-black/8 border border-black/15 text-gray-800 hover:bg-black/15 hover:border-black/25'
                                     )
                                 }`}
                             style={{
-                                backdropFilter: 'blur(12px)',
-                                WebkitBackdropFilter: 'blur(12px)'
+                                backdropFilter: 'blur(16px) saturate(180%)',
+                                WebkitBackdropFilter: 'blur(16px) saturate(180%)'
                             }}
                         >
                             <span className="relative z-10 capitalize font-medium">
                                 {btn}
                             </span>
-                            {/* Glass shine effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                            {/* Enhanced glass shine effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                            {/* Subtle inner glow for selected state */}
+                            {filter === btn && (
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/10 to-transparent opacity-50"></div>
+                            )}
                         </button>
                     ))}
                 </div>
@@ -174,28 +195,29 @@ const Skills = () => {
                                     ? `perspective(1000px) rotateX(${mousePosition.x}deg) rotateY(${mousePosition.y}deg) translateZ(50px) scale(1.05) ${skillsVisible[index] ? 'translateY(0)' : 'translateY(48px)'}` 
                                     : `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1) ${skillsVisible[index] ? 'translateY(0)' : 'translateY(48px)'}`,
                                 transition: hoveredSkill === index 
-                                    ? 'transform 0.1s ease-out, opacity 0.5s ease-out' 
-                                    : 'transform 0.5s ease-out, opacity 0.5s ease-out',
-                                backdropFilter: 'blur(16px)',
-                                WebkitBackdropFilter: 'blur(16px)',
+                                    ? 'transform 0.1s ease-out, opacity 0.5s ease-out, box-shadow 0.3s ease-out' 
+                                    : 'transform 0.5s ease-out, opacity 0.5s ease-out, box-shadow 0.5s ease-out',
+                                backdropFilter: 'blur(20px) saturate(180%)',
+                                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                                 background: isDarkMode 
                                     ? `linear-gradient(145deg, 
-                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.12' : '0.08'}), 
-                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.06' : '0.04'}))`
+                                        rgba(0, 0, 0, ${hoveredSkill === index ? '0.5' : '0.3'}), 
+                                        rgba(0, 0, 0, ${hoveredSkill === index ? '0.6' : '0.4'}))`
                                     : `linear-gradient(145deg, 
-                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.7' : '0.6'}), 
-                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.5' : '0.4'}))`,
+                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.8' : '0.7'}), 
+                                        rgba(255, 255, 255, ${hoveredSkill === index ? '0.6' : '0.5'}))`,
+                                // Enhanced border with subtle gradient
                                 border: isDarkMode 
-                                    ? '1px solid rgba(255, 255, 255, 0.2)'
-                                    : '1px solid rgba(0, 0, 0, 0.15)',
+                                    ? `1px solid rgba(255, 255, 255, ${hoveredSkill === index ? '0.35' : '0.25'})`
+                                    : '1px solid rgba(0, 0, 0, 0.2)',
                                 boxShadow: hoveredSkill === index 
                                     ? (isDarkMode 
-                                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(141, 93, 244, 0.3)'
-                                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(141, 93, 244, 0.2)'
+                                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(141, 93, 244, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.2)'
+                                        : '0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 35px rgba(141, 93, 244, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
                                     )
                                     : (isDarkMode 
-                                        ? '0 8px 32px rgba(0, 0, 0, 0.4)'
-                                        : '0 8px 32px rgba(0, 0, 0, 0.12)'
+                                        ? '0 10px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3)'
+                                        : '0 10px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7)'
                                     )
                             }}
                             onMouseEnter={() => setHoveredSkill(index)}
@@ -205,21 +227,15 @@ const Skills = () => {
                             }}
                             onMouseMove={(e) => handleMouseMove(e, index)}
                         >
-                            {/* Floating icon container */}
-                            <div className={`mb-6 p-4 rounded-2xl transition-all duration-700 relative z-10`} 
+                            {/* Floating icon container with enhanced white background */}
+                            <div className={`mb-6 p-4 rounded-2xl transition-all duration-700 relative z-10 ${
+                                isDarkMode ? 'bg-white/95' : 'bg-white'
+                            }`} 
                                 style={{
                                     transform: hoveredSkill === index ? 'translateY(-10px) rotateY(15deg) scale(1.15)' : 'translateY(0) rotateY(0deg) scale(1)',
-                                    background: isDarkMode 
-                                        ? 'linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05))'
-                                        : 'linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5))',
-                                    backdropFilter: 'blur(12px)',
-                                    WebkitBackdropFilter: 'blur(12px)',
-                                    border: isDarkMode 
-                                        ? '1px solid rgba(255, 255, 255, 0.15)'
-                                        : '1px solid rgba(0, 0, 0, 0.1)',
                                     boxShadow: hoveredSkill === index 
-                                        ? '0 15px 35px rgba(0, 0, 0, 0.15)'
-                                        : '0 5px 15px rgba(0, 0, 0, 0.08)'
+                                        ? '0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(141, 93, 244, 0.4)'
+                                        : '0 8px 25px rgba(0, 0, 0, 0.1)'
                                 }}>
                                 <img 
                                     src={skill.img} 
@@ -227,59 +243,79 @@ const Skills = () => {
                                     className="w-16 h-16 object-contain transition-all duration-700" 
                                     style={{
                                         filter: hoveredSkill === index 
-                                            ? 'drop-shadow(0 8px 16px rgba(141, 93, 244, 0.4)) saturate(1.2) brightness(1.1)' 
-                                            : 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1)) saturate(0.9)',
+                                            ? 'drop-shadow(0 10px 20px rgba(141, 93, 244, 0.5)) saturate(1.3) brightness(1.15)' 
+                                            : 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) saturate(0.95)',
                                         transform: hoveredSkill === index ? 'scale(1.1) rotateZ(5deg)' : 'scale(1) rotateZ(0deg)'
                                     }}
                                 />
                             </div>
                             
-                            {/* Skill name with 3D effect */}
+                            {/* Skill name with enhanced 3D effect */}
                             <h3 className={`text-xl font-bold mb-3 relative z-10 transition-all duration-500 text-center ${
                                 isDarkMode ? 'text-white' : 'text-gray-800'
                             }`} style={{
                                 transform: hoveredSkill === index ? 'translateY(-5px) scale(1.05)' : 'translateY(0) scale(1)',
                                 textShadow: hoveredSkill === index 
                                     ? (isDarkMode 
-                                        ? '0 5px 15px rgba(141, 93, 244, 0.6)' 
-                                        : '0 5px 15px rgba(141, 93, 244, 0.4)'
+                                        ? '0 5px 20px rgba(141, 93, 244, 0.8), 0 2px 5px rgba(0, 0, 0, 0.5)' 
+                                        : '0 5px 20px rgba(141, 93, 244, 0.6), 0 2px 3px rgba(0, 0, 0, 0.2)'
                                     )
-                                    : 'none'
+                                    : (isDarkMode ? '0 2px 8px rgba(0, 0, 0, 0.4)' : 'none')
                             }}>
                                 {skill.name}
                             </h3>
                             
-                            {/* Description with fade-in effect */}
+                            {/* Description with enhanced fade-in effect */}
                             <p className={`text-sm text-center px-2 relative z-10 transition-all duration-500 ${
                                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
                             }`} style={{
-                                opacity: hoveredSkill === index ? 1 : 0.7,
-                                transform: hoveredSkill === index ? 'translateY(-3px)' : 'translateY(0)'
+                                opacity: hoveredSkill === index ? 1 : 0.8,
+                                transform: hoveredSkill === index ? 'translateY(-3px)' : 'translateY(0)',
+                                textShadow: isDarkMode && hoveredSkill === index ? '0 1px 2px rgba(0, 0, 0, 0.5)' : 'none'
                             }}>
                                 {skill.desc}
                             </p>
                             
-                            {/* Animated border glow */}
+                            {/* Enhanced animated border glow */}
                             <div className="absolute inset-0 rounded-3xl pointer-events-none overflow-hidden">
                                 <div className={`absolute inset-0 rounded-3xl transition-all duration-700 ${
                                     hoveredSkill === index ? 'opacity-100' : 'opacity-0'
                                 }`} style={{
                                     background: `conic-gradient(from 0deg, 
-                                        rgba(141, 93, 244, 0.3), 
-                                        rgba(250, 60, 112, 0.3), 
-                                        rgba(141, 93, 244, 0.3))`,
+                                        rgba(141, 93, 244, 0.4), 
+                                        rgba(250, 60, 112, 0.4), 
+                                        rgba(141, 93, 244, 0.4))`,
                                     padding: '2px',
                                     WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                                     WebkitMaskComposite: 'exclude',
-                                    maskComposite: 'exclude'
+                                    maskComposite: 'exclude',
+                                    animation: hoveredSkill === index ? 'rotateBorder 3s linear infinite' : 'none'
                                 }}></div>
                             </div>
                             
-                            {/* Glass reflection */}
+                            {/* Enhanced glass reflection */}
                             <div className={`absolute inset-0 rounded-3xl pointer-events-none transition-all duration-700 ${
-                                hoveredSkill === index ? 'opacity-100' : 'opacity-0'
+                                hoveredSkill === index ? 'opacity-100' : 'opacity-30'
                             }`} style={{
-                                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%)'
+                                background: isDarkMode 
+                                    ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 40%, rgba(255, 255, 255, 0.1) 100%)'
+                                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 40%, rgba(255, 255, 255, 0.15) 100%)'
+                            }}></div>
+                            
+                            {/* Enhanced glassmorphism effect for dark mode */}
+                            {isDarkMode && (
+                                <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{
+                                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 30%, rgba(255, 255, 255, 0.04) 100%)',
+                                    backdropFilter: 'blur(25px) saturate(200%)',
+                                    WebkitBackdropFilter: 'blur(25px) saturate(200%)'
+                                }}></div>
+                            )}
+                            
+                            {/* Subtle radial gradient for depth */}
+                            <div className="absolute inset-0 rounded-3xl pointer-events-none opacity-30" style={{
+                                background: isDarkMode 
+                                    ? 'radial-gradient(ellipse at center, rgba(141, 93, 244, 0.2) 0%, transparent 70%)'
+                                    : 'radial-gradient(ellipse at center, rgba(141, 93, 244, 0.1) 0%, transparent 70%)'
                             }}></div>
                         </div>
                     ))}
@@ -305,12 +341,17 @@ const Skills = () => {
                     }
                 }
                 
+                @keyframes rotateBorder {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
                 .liquid-letter:hover { 
                     animation: liquidHover 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
                 }
                 
                 .skill-card {
-                    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+                    transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.5s ease-out;
                 }
             `}</style>
         </section>

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useTheme } from './ThemeContext'
 import me from '../assets/me.jpg'
 import star from '../assets/star.png'
+import comptia from '../assets/comptia.png'
+import itf from '../assets/itf.png'
 
 const Hero = () => {
     const { isDarkMode } = useTheme();
@@ -12,11 +14,13 @@ const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
     const [typingPaused, setTypingPaused] = useState(false);
     
-    // Refs for scroll animations
+    // Refs and state for scroll animations
     const imageRef = useRef(null);
     const textRef = useRef(null);
+    const waysToHelpRef = useRef(null);
     const [imageInView, setImageInView] = useState(false);
     const [textInView, setTextInView] = useState(false);
+    const [waysToHelpInView, setWaysToHelpInView] = useState(false);
     
     const words = ['Web Developer', 'Frontend Enthusiast', 'Mobile App Developer'];
     
@@ -29,7 +33,7 @@ const Hero = () => {
         return () => clearTimeout(timer);
     }, []);
     
-    // Intersection Observer for scroll animations
+    // Intersection Observer for scroll animations - RESET ANIMATIONS WHEN ELEMENTS LEAVE VIEW
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -39,6 +43,17 @@ const Hero = () => {
                             setImageInView(true);
                         } else if (entry.target === textRef.current) {
                             setTextInView(true);
+                        } else if (entry.target === waysToHelpRef.current) {
+                            setWaysToHelpInView(true);
+                        }
+                    } else {
+                        // Reset animation when elements leave view
+                        if (entry.target === imageRef.current) {
+                            setImageInView(false);
+                        } else if (entry.target === textRef.current) {
+                            setTextInView(false);
+                        } else if (entry.target === waysToHelpRef.current) {
+                            setWaysToHelpInView(false);
                         }
                     }
                 });
@@ -54,12 +69,19 @@ const Hero = () => {
             observer.observe(textRef.current);
         }
         
+        if (waysToHelpRef.current) {
+            observer.observe(waysToHelpRef.current);
+        }
+        
         return () => {
             if (imageRef.current) {
                 observer.unobserve(imageRef.current);
             }
             if (textRef.current) {
                 observer.unobserve(textRef.current);
+            }
+            if (waysToHelpRef.current) {
+                observer.unobserve(waysToHelpRef.current);
             }
         };
     }, []);
@@ -152,9 +174,9 @@ const Hero = () => {
     };
     
     return (
-        <section id='About' className='body-font z-10'>
-            <div className='max-w-7xl mx-auto flex px-4 lg:px-2 py-24 mt-8 flex-col items-center'>
-                <div className={`relative flex flex-col items-center text-center mb-16 transition-all duration-1000 ease-out transform ${
+        <section id='About' className='body-font overflow-hidden'>
+            <div className='w-full mx-auto flex px-4 py-12 sm:py-16 lg:py-20 flex-col items-center'>
+                <div className={`relative flex flex-col items-center text-center mb-12 sm:mb-12 lg:mb-16 transition-all duration-1000 ease-out transform ${
                     textVisible 
                         ? 'opacity-100 translate-y-0' 
                         : 'opacity-0 translate-y-8'
@@ -204,6 +226,17 @@ const Hero = () => {
                             }
                         }
                         
+                        @keyframes fadeInUp {
+                            from {
+                                opacity: 0;
+                                transform: translateY(50px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
                         .fade-in-right {
                             animation: fadeInRight 1s ease-out forwards;
                         }
@@ -211,23 +244,111 @@ const Hero = () => {
                         .fade-in-left {
                             animation: fadeInLeft 1s ease-out forwards;
                         }
+                        
+                        .fade-in-up {
+                            animation: fadeInUp 1s ease-out forwards;
+                        }
+                        
+                        .fade-in-up-delay-1 {
+                            animation: fadeInUp 1s ease-out 0.2s forwards;
+                            opacity: 0;
+                        }
+                        
+                        .fade-in-up-delay-2 {
+                            animation: fadeInUp 1s ease-out 0.4s forwards;
+                            opacity: 0;
+                        }
+                        
+                        .fade-in-up-delay-3 {
+                            animation: fadeInUp 1s ease-out 0.6s forwards;
+                            opacity: 0;
+                        }
+
+                        /* Mobile-specific Boogaloo font styles */
+                        .boogaloo-mobile {
+                            font-family: "Boogaloo", cursive !important;
+                            font-weight: 400;
+                            font-style: normal;
+                            font-size: 2rem; /* 32px */
+                            line-height: 1.2;
+                        }
+
+                        /* Responsive sizes for Boogaloo */
+                        @media (min-width: 640px) {
+                            .boogaloo-mobile {
+                                font-size: 3.75rem; /* 60px */
+                            }
+                        }
+
+                        @media (min-width: 768px) {
+                            .boogaloo-mobile {
+                                font-size: 4rem; /* 64px */
+                            }
+                        }
+/* Mobile-specific Cal Sans font styles */
+                        .cal-sans-mobile {
+                            font-family: "Cal Sans", sans-serif !important;
+                            font-weight: 400;
+                            font-style: normal;
+                            font-size: 1.8rem; /* 30px */
+                            line-height: 1.2;
+                        }
+
+                        @media (min-width: 640px) {
+                            .cal-sans-mobile {
+                                font-size: 4.5rem; /* 72px */
+                            }
+                        }
+
+                        @media (min-width: 768px) {
+                            .cal-sans-mobile {
+                                font-size: 6rem; /* 96px */
+                            }
+                        }
+
+                        @media (min-width: 1024px) {
+                            .cal-sans-mobile {
+                                font-size: 7rem; /* 112px */
+                            }
+                        }
+
+                        @media (min-width: 1280px) {
+                            .cal-sans-mobile {
+                                font-size: 7rem; /* 128px */
+                            }
+                        }
+
+                        @keyframes bounceArrow {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(10px); }
+                        }
+
+                        .scroll-indicator {
+                            animation: bounceArrow 2s ease-in-out infinite;
+                        }
                     `}</style>
                     
-                    {/* Adjusted title section with negative margin to lift it up */}
-                    <div className="mb-6 -mt-12">
-                        <h1 className={`title-font sm:text-6xl text-4xl mb-6 font-bold leading-tight ${
+                    {/* Title section - mobile only spacing adjustments */}
+                    <div className="mb-6 sm:mb-6 w-full relative">
+                       
+                        
+                        <h1 className={`title-font mb-6 sm:mb-6 font-bold leading-tight text-center ${
                             isDarkMode ? 'text-white' : 'text-black'
                         }`}>
-                            <span className="boogaloo-regular select-none sm:text-6xl text-5xl">Hello there, I am</span>
-                            <br />
-                            <span className=" cal-sans-regular inline-block">
-                                {renderAnimatedText('Gabriel Echaluce.', true)}
+                            {/* Mobile-optimized Boogaloo font */}
+                            <span className="boogaloo-mobile select-none block">
+                                Hello there, I am
+                            </span>
+                            <br className="hidden sm:block" />
+                            <span className="cal-sans-mobile inline-block mt-4 sm:mt-0">
+                                {renderAnimatedText('Errol Gabriel Echaluce.', true)}
                             </span>
                         </h1>
                     </div>
                     
-                    <div className="relative h-16 sm:h-20 flex items-center justify-center mb-8">
-                        <h2 className={`sm:text-3xl text-2xl mb-4 font-bold ${
+                    {/* Typewriter section - mobile only size adjustments */}
+                    <div className="relative h-16 sm:h-16 lg:h-20 flex items-center justify-center mb-8 sm:mb-8 w-full">
+                        <h2 className={`text-xl sm:text-xl lg:text-3xl mb-2 sm:mb-4 font-bold text-center ${
                             isDarkMode 
                                 ? 'text-yellow-300' 
                                 : 'text-blue-950'
@@ -245,12 +366,14 @@ const Hero = () => {
                         </h2>
                     </div>
                     
-                    <div className='flex justify-center'>
+                    {/* Download CV Button - mobile optimized */}
+                    {/*
+                    <div className='flex justify-center w-full'>
                         <a 
-                            href="..../assets/Errol Gabriel Echaluce.pdf" 
+                            href="../assets/Errol Gabriel Echaluce.pdf" 
                             download='Errol Gabriel Echaluce CV.pdf' 
-                            className={`inline-flex items-center justify-center border-2 py-3 px-8
-                            focus:outline-none text-lg font-semibold
+                            className={`inline-flex items-center justify-center border-2 py-3 sm:py-3 px-8 sm:px-8
+                            focus:outline-none text-lg sm:text-lg font-semibold
                             transition-all duration-300 ease-in-out
                             relative overflow-hidden group hover:scale-105 ${
                                 isDarkMode
@@ -267,109 +390,227 @@ const Hero = () => {
                             }`}></div>
                         </a>
                     </div>
+                    */}
                 </div>
             </div>
 
-            {/* ABOUT ME SECTION - CENTERED */}
-            <div className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${
+            {/* Scroll indicator - mobile only */}
+            <div className="md:hidden flex flex-col items-center mt-20 mb-8">
+             
+                <svg 
+                    className="w-6 h-6 scroll-indicator" 
+                    fill="none" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth="2" 
+                    viewBox="0 0 24 24" 
+                    stroke={isDarkMode ? '#8d5df4' : '#fa3c70'}
+                >
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+
+            {/* ABOUT ME SECTION - Mobile optimized with increased spacing */}
+            <div className={`flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 transition-all duration-1000 ease-out w-full ${
                 textVisible ? 'opacity-100' : 'opacity-0'
             }`}>
-                {/* Removed border around about section - adjusted spacing */}
-                <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-6xl">
-                    {/* Profile Image centered with enhanced quality - adjusted for mobile */}
-                    <div 
-                        ref={imageRef}
-                        className={`relative group -mt-24 sm:-mt-8 md:mt-0 ${imageInView ? 'fade-in-right' : 'opacity-0'}`}
-                    >
-                        <div className={`w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-2xl transition-all duration-300 ease-in-out group-hover:scale-105 border-4 ${
-                            isDarkMode 
-                                ? 'border-pink-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]' 
-                                : 'border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
-                        }`}
-                        style={{
-                            boxShadow: isDarkMode 
-                                ? '0 25px 50px -12px rgba(236, 72, 153, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
-                                : '0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
-                            background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1))',
-                        }}
+                {/* Add About Me title with dash */}
+                <div className="flex flex-col w-full max-w-6xl">
+                   <div className="flex items-center gap-4 mb-16 mt-[60vh] sm:mt-36">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#8d5df4]">
+        About me
+    </h2>
+    <div className={`h-[3px] flex-grow bg-[#8d5df4] mt-[2px]`}></div>
+</div>
+                    
+                    {/* Add more vertical spacing for mobile */}
+                    <div className="flex flex-col md:flex-row items-center justify-center space-y-16 md:space-y-0 md:space-x-12 w-full pt-8 sm:pt-0">
+{/* Profile Image - mobile optimized with scroll animation */}
+                        <div 
+                            ref={imageRef}
+                            className={`relative group flex-shrink-0 transition-all duration-1000 ease-out ${
+                                imageInView ? 'fade-in-right opacity-100' : 'opacity-0 translate-x-[-50px]'
+                            }`}
                         >
-                            <img 
-                                src={me} 
-                                alt="Gabriel Echaluce"
-                                className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110"
-                                style={{
-                                    filter: 'brightness(1.05) contrast(1.1) saturate(1.15) sharpen(1px)',
-                                    imageRendering: 'crisp-edges',
-                                    backfaceVisibility: 'hidden',
-                                    transform: 'translateZ(0)',
-                                    objectPosition: 'center center',
-                                }}
-                            />
-                        </div>
-                        {/* Enhanced gradient overlay effect with better blending */}
-                        <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                            isDarkMode
-                                ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
-                                : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
-                        }`}
-                        style={{
-                            mixBlendMode: 'overlay',
-                        }}
-                        ></div>
-                        
-                        {/* Additional enhancement layer for premium look */}
-                        <div className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
+                            {/* Star decoration positioned like in reference */}
+                            <div className="absolute -bottom-20 -left-9 sm:-bottom-8 sm:-left-12 md:-bottom-32 md:-left-39 z-20">
+                                <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 animate-pulse" style={{ animationDuration: '2.5s' }}>
+                                    <img 
+                                        src={star} 
+                                        alt="star decoration" 
+                                        className="w-full h-full object-contain drop-shadow-lg"
+                                        style={{
+                                            filter: 'drop-shadow(0 4px 8px rgba(255, 215, 0, 0.4)) brightness(1.1)',
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className={`w-52 h-52 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl transition-all duration-300 ease-in-out group-hover:scale-105 border-4 ${
+                                isDarkMode 
+                                    ? 'border-pink-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]' 
+                                    : 'border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
+                            }`}
                             style={{
-                                background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
-                                mixBlendMode: 'soft-light',
+                                boxShadow: isDarkMode 
+                                    ? '0 25px 50px -12px rgba(236, 72, 153, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
+                                    : '0 25px 50px -12px rgba(147, 51, 234, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+                                background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1))',
                             }}
-                        ></div>
-                    </div>
-
-                    {/* Text Content centered - now inside a card with non-transparent background */}
-                    <div 
-                        ref={textRef}
-                        className={`relative max-w-md md:max-w-lg lg:max-w-xl ${textInView ? 'fade-in-left' : 'opacity-0'}`}
-                    >
-                        {/* Single star decoration in top right corner - visible on all screen sizes */}
-                        <div className="absolute -top-6 -right-5 z-10 md:-top-10 md:-right-11">
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 animate-pulse" style={{ animationDuration: '2s' }}>
+                            >
                                 <img 
-                                    src={star} 
-                                    alt="star" 
-                                    className="w-full h-full object-contain"
+                                    src={me} 
+                                    alt="Gabriel Echaluce"
+                                    className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110"
+                                    style={{
+                                        filter: 'brightness(1.05) contrast(1.1) saturate(1.15) sharpen(1px)',
+                                        imageRendering: 'crisp-edges',
+                                        backfaceVisibility: 'hidden',
+                                        transform: 'translateZ(0)',
+                                        objectPosition: 'center center',
+                                    }}
                                 />
+                              
+                            </div>
+                            
+                            {/* Enhanced gradient overlay effect */}
+                            <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                                isDarkMode
+                                    ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
+                                    : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
+                            }`}
+                            style={{
+                                mixBlendMode: 'overlay',
+                            }}
+                            ></div>
+                            
+                            {/* Additional enhancement layer */}
+                            <div className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
+                                style={{
+                                    background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)`,
+                                    mixBlendMode: 'soft-light',
+                                }}
+                            ></div>
+                        </div>
+
+                        {/* Text Content - mobile optimized with scroll animation */}
+                        <div 
+                            ref={textRef}
+                            className={`relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transition-all duration-1000 ease-out ${
+                                textInView ? 'fade-in-up opacity-100' : 'opacity-0 translate-y-[50px]'
+                            }`}
+                        >
+                           
+                            {/* Star decoration - adjusted for mobile */}
+                            <div className="absolute -top-8 -right-8 sm:-top-6 sm:-right-6 md:-top-10 md:-right-11 z-10">
+                                <div className="w-16 h-16 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 animate-pulse" style={{ animationDuration: '2s' }}>
+                                    <img 
+                                        src={star} 
+                                        alt="star" 
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className={`rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 transition-all duration-500 border shadow-2xl hover:shadow-3xl ${
+    isDarkMode
+        ? 'bg-black border-gray-700 text-white'
+        : 'bg-white border-gray-200 text-gray-900'
+}`}
+style={{
+    boxShadow: isDarkMode
+        ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)'
+        : '0 8px 32px rgba(147, 51, 234, 0.08), 0 1px 0 rgba(0,0,0,0.03), 0 0 20px rgba(147, 51, 234, 0.10)'
+}}>
+                                <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                                    <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>
+                                        {/* ITF+ Badge above "I'm" - left aligned on mobile */}
+                                        <span className="flex flex-row items-center mb-4">
+                                            <img 
+                                                src={itf} 
+                                                alt="CompTIA ITF+"
+                                                className="w-16 sm:w-20 md:w-24 h-auto mr-2 drop-shadow"
+                                            />
+                                            <span className="text-xs sm:text-sm font-semibold text-purple-700 dark:text-pink-400">
+                                            </span>
+                                        </span>
+                                        <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
+                                            isDarkMode ? 'from-pink-400 to-pink-600' 
+                                                      : 'from-purple-600 to-purple-800'
+                                        }`}>
+                                            I'm
+                                        </span>
+                                        {' a passionate developer with a Computer Science degree who specializes in creating responsive web and mobile applications. With a keen eye for design and commitment to clean code, I craft polished digital experiences that prioritize interactivity and seamless user engagement.'}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div className={`rounded-3xl p-6 sm:p-8 md:p-10 transition-all duration-500 border ${
-                            isDarkMode 
-                                ? 'bg-black border-gray-700 text-white' 
-                                : 'bg-white border-gray-200 text-black'
-                        } shadow-2xl hover:shadow-3xl`}
-                        style={{
-                            boxShadow: isDarkMode 
-                                ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)' 
-                                : '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
-                        }}>
-                            <div className="space-y-4 md:space-y-6">
-                                <p className={`text-lg md:text-xl leading-relaxed ${
-                                    isDarkMode ? 'text-gray-300' : 'text-gray-800'
-                                }`}>
-                                    <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
-                                        isDarkMode 
-                                            ? 'from-pink-400 to-pink-600' 
-                                            : 'from-purple-600 to-purple-800'
-                                    }`}>
-                                      Errol Gabriel Echaluce
-                                    </span> on Earth.
-                                </p>
-                                {/* <p className={`text-base md:text-lg leading-relaxed ${
-                                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                                }`}>
-                                    Dedicated to bridging the gaps and pushing the boundaries of technology through disruptive innovations and redefining human-computer interactions with cutting-edge AI advancements.
-                                </p> */}
-                            </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Ways that I can help section placed below image and text container */}
+            <div 
+                ref={waysToHelpRef}
+                className={`w-full flex flex-col items-center px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 transition-all duration-1000 ease-out`}
+            >
+                <h2 className={`text-3xl sm:text-4xl font-bold mb-2 text-center transition-all duration-1000 ease-out ${
+                    waysToHelpInView ? 'fade-in-up opacity-100' : 'opacity-0 translate-y-[50px]'
+                } ${isDarkMode ? 'text-white' : 'text-[#181c2a]'}`}>
+                    Ways that I can help
+                </h2>
+                <div className={`w-16 h-1 bg-purple-500 rounded mb-10 transition-all duration-1000 ease-out ${
+                    waysToHelpInView ? 'fade-in-up opacity-100' : 'opacity-0 translate-y-[50px]'
+                }`}></div>
+                <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 justify-center items-stretch">
+                    {/* Full-Stack Web Development */}
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                        waysToHelpInView ? 'fade-in-up-delay-1' : 'opacity-0 translate-y-[50px]'
+                    } ${
+    isDarkMode
+        ? 'bg-black border-gray-700 text-white shadow-2xl'
+        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
+} flex flex-col items-center text-center`}>
+                        <div className="mb-4 text-3xl">
+                            <span>&lt;&gt;</span>
                         </div>
+                        <h3 className="font-bold text-lg mb-2">Full-Stack Web Development</h3>
+                        <p className="text-base opacity-80">
+                            Building scalable web applications with both frontend and backend technologies, ensuring seamless user experience and performance.
+                        </p>
+                    </div>
+                    {/* User-Centered Design */}
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                        waysToHelpInView ? 'fade-in-up-delay-2' : 'opacity-0 translate-y-[50px]'
+                    } ${
+    isDarkMode
+        ? 'bg-black border-gray-700 text-white shadow-2xl'
+        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
+} flex flex-col items-center text-center`}>
+                        <div className="mb-4 text-3xl">
+                            <span>✖️</span>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">User-Centered Design</h3>
+                        <p className="text-base opacity-80">
+                            Designing intuitive and responsive interfaces while ensuring accessibility and performance on all devices.
+                        </p>
+                    </div>
+                    {/* API Development & Integration */}
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                        waysToHelpInView ? 'fade-in-up-delay-3' : 'opacity-0 translate-y-[50px]'
+                    } ${
+    isDarkMode
+        ? 'bg-black border-gray-700 text-white shadow-2xl'
+        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
+} flex flex-col items-center text-center`}>
+                        <div className="mb-4 text-3xl">
+                            <span>☁️</span>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">API Development & Integration</h3>
+                        <p className="text-base opacity-80">
+                            Creating and integrating RESTful APIs to connect frontend interfaces with powerful backend services.
+                        </p>
                     </div>
                 </div>
             </div>
