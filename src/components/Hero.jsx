@@ -366,31 +366,7 @@ const Hero = () => {
                         </h2>
                     </div>
                     
-                    {/* Download CV Button - mobile optimized */}
-                    {/*
-                    <div className='flex justify-center w-full'>
-                        <a 
-                            href="../assets/Errol Gabriel Echaluce.pdf" 
-                            download='Errol Gabriel Echaluce CV.pdf' 
-                            className={`inline-flex items-center justify-center border-2 py-3 sm:py-3 px-8 sm:px-8
-                            focus:outline-none text-lg sm:text-lg font-semibold
-                            transition-all duration-300 ease-in-out
-                            relative overflow-hidden group hover:scale-105 ${
-                                isDarkMode
-                                    ? 'text-white border-pink-500 hover:bg-pink-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]'
-                                    : 'text-black border-purple-500 hover:bg-purple-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
-                            }`}
-                            style={{ borderRadius: '0' }}
-                        >
-                            <span className="relative z-10">Download CV</span>
-                            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                                isDarkMode
-                                    ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
-                                    : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
-                            }`}></div>
-                        </a>
-                    </div>
-                    */}
+                    
                 </div>
             </div>
 
@@ -496,7 +472,7 @@ const Hero = () => {
                         <div 
                             ref={textRef}
                             className={`relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transition-all duration-1000 ease-out ${
-                                textInView ? 'fade-in-up opacity-100' : 'opacity-0 translate-y-[50px]'
+                                textInView ? 'fade-in-left opacity-100' : 'opacity-0 translate-y-[50px]'
                             }`}
                         >
                            
@@ -511,20 +487,12 @@ const Hero = () => {
                                 </div>
                             </div>
                             
-                            <div className={`rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 transition-all duration-500 border shadow-2xl hover:shadow-3xl ${
-    isDarkMode
-        ? 'bg-black border-gray-700 text-white'
-        : 'bg-white border-gray-200 text-gray-900'
-}`}
-style={{
-    boxShadow: isDarkMode
-        ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)'
-        : '0 8px 32px rgba(147, 51, 234, 0.08), 0 1px 0 rgba(0,0,0,0.03), 0 0 20px rgba(147, 51, 234, 0.10)'
-}}>
+                            <div className={`rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 transition-all duration-500 border bg-black border-gray-700 text-white shadow-2xl hover:shadow-3xl`}
+                            style={{
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)'
+                            }}>
                                 <div className="space-y-4 sm:space-y-5 md:space-y-6">
-                                    <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-700'
-        }`}>
+                                    <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left text-gray-300`}>
                                         {/* ITF+ Badge above "I'm" - left aligned on mobile */}
                                         <span className="flex flex-row items-center mb-4">
                                             <img 
@@ -533,8 +501,10 @@ style={{
                                                 className="w-16 sm:w-20 md:w-24 h-auto mr-2 drop-shadow"
                                             />
                                             <span className="text-xs sm:text-sm font-semibold text-purple-700 dark:text-pink-400">
+                                               
                                             </span>
                                         </span>
+                                        
                                         <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
                                             isDarkMode ? 'from-pink-400 to-pink-600' 
                                                       : 'from-purple-600 to-purple-800'
@@ -567,11 +537,7 @@ style={{
                     {/* Full-Stack Web Development */}
                     <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
                         waysToHelpInView ? 'fade-in-up-delay-1' : 'opacity-0 translate-y-[50px]'
-                    } ${
-    isDarkMode
-        ? 'bg-black border-gray-700 text-white shadow-2xl'
-        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
-} flex flex-col items-center text-center`}>
+                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
                         <div className="mb-4 text-3xl">
                             <span>&lt;&gt;</span>
                         </div>
@@ -583,11 +549,7 @@ style={{
                     {/* User-Centered Design */}
                     <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
                         waysToHelpInView ? 'fade-in-up-delay-2' : 'opacity-0 translate-y-[50px]'
-                    } ${
-    isDarkMode
-        ? 'bg-black border-gray-700 text-white shadow-2xl'
-        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
-} flex flex-col items-center text-center`}>
+                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
                         <div className="mb-4 text-3xl">
                             <span>✖️</span>
                         </div>
@@ -599,11 +561,7 @@ style={{
                     {/* API Development & Integration */}
                     <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
                         waysToHelpInView ? 'fade-in-up-delay-3' : 'opacity-0 translate-y-[50px]'
-                    } ${
-    isDarkMode
-        ? 'bg-black border-gray-700 text-white shadow-2xl'
-        : 'bg-white border-gray-200 text-gray-900 shadow-xl'
-} flex flex-col items-center text-center`}>
+                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
                         <div className="mb-4 text-3xl">
                             <span>☁️</span>
                         </div>

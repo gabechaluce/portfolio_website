@@ -93,7 +93,7 @@ const projects = [
     {
         id: 6, 
         title: 'HerbaScan - Medicinal Plant Recognition (Thesis)',
-        desc: 'AI-powered mobile app for identifying Botanist, Naturopath and DOH-approved medicinal plants using machine learning and image recognition. Features English-Tagalog translation, text-to-speech, video tutorials, and comprehensive plant database.',
+        desc: 'AI-powered mobile app for identifying DOH-approved, Botanist and Naturopath recommended medicinal plants using machine learning and image recognition. Features English-Tagalog translation, text-to-speech, video tutorials, and comprehensive plant database.',
         technologies: ['Kotlin', 'TensorFlow', 'Android Studio', 'Firebase'],
         github: 'https://github.com/gabechaluce/medplant.git',
         demo: 'https://your-herba-demo.com',
