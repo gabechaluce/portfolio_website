@@ -368,7 +368,7 @@ const Hero = () => {
                                    {/* Download CV Button - mobile optimized */}
                     <div className='flex justify-center w-full'>
                         <a 
-                            href="../assets/Errol Gabriel Echaluce.pdf" 
+                            href="/Errol Gabriel Echaluce.pdf" 
                             download='Errol Gabriel Echaluce CV.pdf' 
                             className={`inline-flex items-center justify-center border-2 py-3 sm:py-3 px-8 sm:px-8
                             focus:outline-none text-lg sm:text-lg font-semibold
