@@ -69,7 +69,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://linkedin.com/in/yourusername" 
+              href="https://www.linkedin.com/in/gabechaluce/" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`p-2 rounded-full hover:bg-opacity-20 transition-all ${
