@@ -40,7 +40,7 @@ const projects = [
         title: 'RGA Project Workflow',
         desc: 'A comprehensive project workflow management system designed to streamline project planning, task assignment, and progress tracking with real-time collaboration features.',
         technologies: ['PHP', 'JQuery', 'MySQL', 'JavaScript'],
-        github: 'https://github.com/gabechaluce/rga-workflow',
+        github: 'https://github.com/gabechaluce/rgaklms',
         demo: 'https://your-rga-demo.com',
         image: rga1,
         images: [rga1, rga2, rga3, rga4],
@@ -51,7 +51,7 @@ const projects = [
         title: 'RGA Inventory & Sales Management',
         desc: 'Advanced inventory and sales management system with real-time stock tracking, automated reorder points, sales analytics, and comprehensive reporting dashboard.',
         technologies: ['JavaScript', 'PHP', 'MySQL', 'Bootstrap'],
-        github: 'https://github.com/yourusername/rga-inventory',
+        github: 'https://github.com/gabechaluce/rgaklms',
         demo: 'https://your-rgaims-demo.com',
         image: rgaims,
         images: [rgaims, rgaims1, rgaims2, rgaims3],
@@ -62,7 +62,7 @@ const projects = [
         title: 'KPI Analytics System',
         desc: 'Interactive Key Performance Indicator dashboard providing real-time business metrics visualization, data analytics, and performance tracking for strategic decision making.',
         technologies: ['PHP', 'JQuery', 'MySQL', 'JavaScript', 'Chart.js','Bootstrap'],
-        github: 'https://github.com/yourusername/kpi-dashboard',
+        github: 'https://github.com/gabechaluce/rgaklms',
         demo: 'https://your-kpi-demo.com',
         image: kpi,
         images: [kpi, kpi1, kpi2, kpi3, kpi4],
@@ -73,8 +73,8 @@ const projects = [
         title: 'Yubu Inventory & Sales',
         desc: 'Modern inventory and sales management platform with intuitive user interface, multi-location support, barcode scanning, and comprehensive sales reporting.',
         technologies: ['PHP', 'JQuery', 'MySQL', 'JavaScript'],
-        github: 'https://github.com/yourusername/yubu-inventory',
-        demo: 'https://your-yubu-demo.com',
+        github: 'https://github.com/gabechaluce/Inventory-Sales.git',
+        demo: 'https://yubuhichicks.com',
         image: yubulog,
         images: [yubulog, yubu2, yubu3, yubu4],
         category: 'fullstack'
@@ -84,8 +84,8 @@ const projects = [
         title: 'Lending Management System',
         desc: 'Comprehensive lending management platform with loan application processing, credit assessment, payment tracking, and automated notification system.',
         technologies: ['PHP', 'JQuery', 'MySQL', 'JavaScript'],
-        github: 'https://github.com/yourusername/lending-system',
-        demo: 'https://your-lending-demo.com',
+        github: 'https://github.com/gabechaluce/Descon_lending.git',
+        demo: 'https://yubuhichicks.com',
         image: lending,
         images: [lending, lending1, lending2, lending3],
         category: 'fullstack'
@@ -96,7 +96,7 @@ const projects = [
         desc: 'AI-powered mobile application for identifying DOH-approved medicinal plants recommended by botanists and naturopaths, using Deep Neural Network algorithms and image recognition. Features include English-Tagalog translation, text-to-speech functionality, video tutorials, and a comprehensive plant database.',
         technologies: ['Kotlin', 'TensorFlow', 'Android Studio', 'Firebase'],
         github: 'https://github.com/gabechaluce/medplant.git',
-        demo: 'https://your-herba-demo.com',
+       
         image: herba,
         images: [herba, herba1, herba2, herba3],
         category: 'mobile'
@@ -106,8 +106,6 @@ const projects = [
         title: 'Stop2Cha Ordering System',
         desc: 'A modern ordering system for Stop2Cha, enabling customers to browse the menu, place orders, and track order status in real time. Features include product management, sales analytics, and a user-friendly interface for both staff and customers.',
         technologies: ['PHP', 'JavaScript', 'MySQL', 'Bootstrap'],
-        github: null, // Set to your GitHub repo if available
-        demo: null,   // Set to your live demo if available
         image: s2c,
         images: [s2c],
         category: 'fullstack'
@@ -117,8 +115,7 @@ const projects = [
         title: 'Cook IT',
         desc: 'A Twitter-inspired forum dedicated to sharing recipes, food tips, and culinary experiences. Cook IT serves as a digital open source cookbook where users can post, comment, and discover new dishes from a passionate food community.',
         technologies: ['PHP', 'JavaScript', 'MySQL', 'Bootstrap'],
-        github: null, // Set to your GitHub repo if available
-        demo: null,   // Set to your live demo if available
+        github: 'https://github.com/gabechaluce/COOK-IT-2.git',
         image: cookit,
         images: [cookit, cookit1, cookit2],
         category: 'fullstack'
