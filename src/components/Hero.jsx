@@ -365,7 +365,33 @@ const Hero = () => {
                             </span>
                         </h2>
                     </div>
+<<<<<<< HEAD
                     
+=======
+                                   {/* Download CV Button - mobile optimized */}
+                    <div className='flex justify-center w-full'>
+                        <a 
+                            href="/Errol Gabriel Echaluce CV.pdf" 
+                            download='Errol Gabriel Echaluce CV.pdf' 
+                            className={`inline-flex items-center justify-center border-2 py-3 sm:py-3 px-8 sm:px-8
+                            focus:outline-none text-lg sm:text-lg font-semibold
+                            transition-all duration-300 ease-in-out
+                            relative overflow-hidden group hover:scale-105 ${
+                                isDarkMode
+                                    ? 'text-white border-pink-500 hover:bg-pink-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]'
+                                    : 'text-black border-purple-500 hover:bg-purple-500 hover:bg-opacity-20 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]'
+                            }`}
+                            style={{ borderRadius: '0' }}
+                        >
+                            <span className="relative z-10">Download CV</span>
+                            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                                isDarkMode
+                                    ? 'bg-gradient-to-r from-pink-500/10 to-pink-600/10'
+                                    : 'bg-gradient-to-r from-purple-500/10 to-purple-600/10'
+                            }`}></div>
+                        </a>
+                    </div>
+>>>>>>> a1a5d5304bab8d60b017e52261934ef3241c454d
                     
                 </div>
             </div>
