@@ -487,12 +487,20 @@ const Hero = () => {
                                 </div>
                             </div>
                             
-                            <div className={`rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 transition-all duration-500 border bg-black border-gray-700 text-white shadow-2xl hover:shadow-3xl`}
+                            <div className={`rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 transition-all duration-500 border shadow-2xl hover:shadow-3xl ${
+                                isDarkMode 
+                                    ? 'bg-black border-gray-700 text-white' 
+                                    : 'bg-white border-purple-200 text-gray-900'
+                            }`}
                             style={{
-                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)'
+                                boxShadow: isDarkMode 
+                                    ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(147, 51, 234, 0.3)'
+                                    : '0 8px 32px rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 20px rgba(147, 51, 234, 0.2)'
                             }}>
                                 <div className="space-y-4 sm:space-y-5 md:space-y-6">
-                                    <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left text-gray-300`}>
+                                    <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left ${
+                                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
                                         {/* ITF+ Badge above "I'm" - left aligned on mobile */}
                                         <span className="flex flex-row items-center mb-4">
                                             <img 
@@ -535,38 +543,50 @@ const Hero = () => {
                 }`}></div>
                 <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 justify-center items-stretch">
                     {/* Full-Stack Web Development */}
-                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out shadow-2xl flex flex-col items-center text-center ${
                         waysToHelpInView ? 'fade-in-up-delay-1' : 'opacity-0 translate-y-[50px]'
-                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
-                        <div className="mb-4 text-3xl">
+                    } ${
+                        isDarkMode 
+                            ? 'bg-black border-gray-700 text-white' 
+                            : 'bg-white border-purple-200 text-gray-900'
+                    }`}>
+                        <div className={`mb-4 text-3xl ${isDarkMode ? 'text-white' : 'text-purple-600'}`}>
                             <span>&lt;&gt;</span>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">Full-Stack Web Development</h3>
-                        <p className="text-base opacity-80">
+                        <h3 className={`font-bold text-lg mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Full-Stack Web Development</h3>
+                        <p className={`text-base ${isDarkMode ? 'opacity-80 text-gray-300' : 'text-gray-600'}`}>
                             Building scalable web applications with both frontend and backend technologies, ensuring seamless user experience and performance.
                         </p>
                     </div>
                     {/* User-Centered Design */}
-                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out shadow-2xl flex flex-col items-center text-center ${
                         waysToHelpInView ? 'fade-in-up-delay-2' : 'opacity-0 translate-y-[50px]'
-                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
-                        <div className="mb-4 text-3xl">
+                    } ${
+                        isDarkMode 
+                            ? 'bg-black border-gray-700 text-white' 
+                            : 'bg-white border-purple-200 text-gray-900'
+                    }`}>
+                        <div className={`mb-4 text-3xl ${isDarkMode ? 'text-white' : 'text-purple-600'}`}>
                             <span>✖️</span>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">User-Centered Design</h3>
-                        <p className="text-base opacity-80">
+                        <h3 className={`font-bold text-lg mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>User-Centered Design</h3>
+                        <p className={`text-base ${isDarkMode ? 'opacity-80 text-gray-300' : 'text-gray-600'}`}>
                             Designing intuitive and responsive interfaces while ensuring accessibility and performance on all devices.
                         </p>
                     </div>
                     {/* API Development & Integration */}
-                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out ${
+                    <div className={`flex-1 rounded-3xl p-8 border transition-all duration-1000 ease-out shadow-2xl flex flex-col items-center text-center ${
                         waysToHelpInView ? 'fade-in-up-delay-3' : 'opacity-0 translate-y-[50px]'
-                    } bg-black border-gray-700 text-white shadow-2xl flex flex-col items-center text-center`}>
-                        <div className="mb-4 text-3xl">
+                    } ${
+                        isDarkMode 
+                            ? 'bg-black border-gray-700 text-white' 
+                            : 'bg-white border-purple-200 text-gray-900'
+                    }`}>
+                        <div className={`mb-4 text-3xl ${isDarkMode ? 'text-white' : 'text-purple-600'}`}>
                             <span>☁️</span>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">API Development & Integration</h3>
-                        <p className="text-base opacity-80">
+                        <h3 className={`font-bold text-lg mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>API Development & Integration</h3>
+                        <p className={`text-base ${isDarkMode ? 'opacity-80 text-gray-300' : 'text-gray-600'}`}>
                             Creating and integrating RESTful APIs to connect frontend interfaces with powerful backend services.
                         </p>
                     </div>

@@ -20,6 +20,7 @@ import firebase from '../assets/firebase.png';
 import maria from '../assets/maria.png';
 import git from '../assets/git.png';
 import myadmin from '../assets/myadmin.png';
+import sass from '../assets/sass.png';
 
 // Reorganized skills array - Frontend first, then Backend
 const skills = [
@@ -29,6 +30,7 @@ const skills = [
     { img: react, name: 'React', desc: 'Frontend Library', category: 'frontend' },
     { img: html, name: 'HTML', desc: 'Markup Language', category: 'frontend' },
     { img: css, name: 'CSS', desc: 'Styling Language', category: 'frontend' },
+    { img: sass, name: 'Sass', desc: 'CSS Preprocessor', category: 'frontend' },
     { img: tailwindcss, name: 'Tailwind CSS', desc: 'CSS Framework', category: 'frontend' },
     { img: figma, name: 'Figma', desc: 'Design Tool', category: 'frontend' },
     { img: androidstudio, name: 'Android Studio', desc: 'Mobile Development', category: 'frontend' },
