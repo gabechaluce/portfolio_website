@@ -20,24 +20,22 @@ import firebase from '../assets/firebase.png';
 import maria from '../assets/maria.png';
 import git from '../assets/git.png';
 import myadmin from '../assets/myadmin.png';
-<<<<<<< HEAD
 import sass from '../assets/sass.png';
-=======
->>>>>>> a1a5d5304bab8d60b017e52261934ef3241c454d
+import typescript from '../assets/typescript.png';
+import angular from '../assets/angular.png';
 
 // Reorganized skills array - Frontend first, then Backend
 const skills = [
     // Frontend Skills
     
     { img: javascript, name: 'Javascript', desc: 'Programming Language', category: 'frontend' },
+    { img: typescript, name: 'TypeScript', desc: 'Superset of JavaScript', category: 'frontend' },
+    { img: angular, name: 'Angular', desc: 'Frontend Framework', category: 'frontend' },
     { img: react, name: 'React', desc: 'Frontend Library', category: 'frontend' },
     { img: html, name: 'HTML', desc: 'Markup Language', category: 'frontend' },
     { img: css, name: 'CSS', desc: 'Styling Language', category: 'frontend' },
-<<<<<<< HEAD
-    { img: sass, name: 'Sass', desc: 'CSS Preprocessor', category: 'frontend' }, 
-=======
->>>>>>> a1a5d5304bab8d60b017e52261934ef3241c454d
     { img: tailwindcss, name: 'Tailwind CSS', desc: 'CSS Framework', category: 'frontend' },
+    { img: sass, name: 'Sass', desc: 'CSS Preprocessor', category: 'frontend' },
     { img: figma, name: 'Figma', desc: 'Design Tool', category: 'frontend' },
     { img: androidstudio, name: 'Android Studio', desc: 'Mobile Development', category: 'frontend' },
     { img: kotlin, name: 'Kotlin', desc: 'Mobile Development', category: 'frontend' },
