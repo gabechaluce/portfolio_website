@@ -3,6 +3,8 @@ import { useTheme } from './ThemeContext'
 import me from '../assets/me.JPG'
 import star from '../assets/star.png'
 import itf from '../assets/itf.png'
+import tech from '../assets/tech.png'
+
 
 const Hero = () => {
     const { isDarkMode } = useTheme();
@@ -500,17 +502,19 @@ const Hero = () => {
                                     <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed text-center md:text-left ${
                                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
                                     }`}>
-                                        {/* ITF+ Badge above "I'm" - left aligned on mobile */}
-                                        <span className="flex flex-row items-center mb-4">
-                                            <img 
-                                                src={itf} 
-                                                alt="CompTIA ITF+"
-                                                className="w-16 sm:w-20 md:w-24 h-auto mr-2 drop-shadow"
-                                            />
-                                            <span className="text-xs sm:text-sm font-semibold text-purple-700 dark:text-pink-400">
-                                               
-                                            </span>
-                                        </span>
+                                                                           {/* Badges - ITF+ and Tech+ side by side */}
+<span className="flex flex-row items-center gap-4 mb-4">
+    <img 
+        src={itf} 
+        alt="CompTIA ITF+"
+        className="w-16 sm:w-20 md:w-24 h-auto drop-shadow"
+    />
+    <img 
+        src={tech} 
+        alt="CompTIA Tech+"
+        className="w-16 sm:w-20 md:w-24 h-auto drop-shadow"
+    />
+</span>
                                         
                                         <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
                                             isDarkMode ? 'from-pink-400 to-pink-600' 
